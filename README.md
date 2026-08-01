@@ -3,7 +3,8 @@
 - https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal
 
 
-InCharater
+InCharater:
+
     backend
         Program.cs
         Controllers
