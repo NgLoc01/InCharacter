@@ -1,33 +1,27 @@
-import { useEffect, useState } from 'react'
 import CharacterPicker from './components/CharacterPicker'
-import type { CharacterInfo } from './types'
+import ChatWindow from './components/ChatWindow'
+import ChatInput from './components/ChatInput'
+import { useChat } from './hooks/useChat'
 
 export default function App() {
-  const [characters, setCharacters] = useState<CharacterInfo[]>([])
-  const [characterId, setCharacterId] = useState('')
-
-  useEffect(() => {
-    fetch('/api/characters')
-      .then((res) => res.json())
-      .then((data: CharacterInfo[]) => {
-        setCharacters(data)
-        if (data.length > 0) setCharacterId(data[0].id)
-      })
-      .catch(() => {})
-  }, [])
-
-  const character = characters.find((c) => c.id === characterId)
+  const { characters, character, characterId, messages, loading, selectCharacter, send } = useChat()
 
   return (
     <div style={{ maxWidth: 600, margin: '2rem auto', fontFamily: 'sans-serif' }}>
-      <h1>{character ? `Chat with ${character.name}` : 'Chat'}</h1>
+      <h1>
+        {character ? `Chat with ${character.name}` : 'Chat'}
+      </h1>
 
       <CharacterPicker
         characters={characters}
         selectedId={characterId}
-        disabled={false}
-        onSelect={setCharacterId}
+        disabled={loading}
+        onSelect={selectCharacter}
       />
+
+      <ChatWindow messages={messages} characterName={character?.name ?? 'Character'} loading={loading} />
+
+      <ChatInput loading={loading} onSend={send} />
     </div>
   )
 }
