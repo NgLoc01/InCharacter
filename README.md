@@ -12,7 +12,7 @@ Setup:
         AzureOpenAI__DeploymentName=<your-deployment-name>
 
 
-InCharater:
+InCharater structure:
 
     backend
         Program.cs
