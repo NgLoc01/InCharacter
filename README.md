@@ -4,7 +4,6 @@ Inspiration:
 - https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/create-resource?view=foundry-classic&pivots=web-portal
 
 Setup:
-
     The backend won't run out of the box because it has no `backend/.env` file.
     Create one (it's gitignored) with your own Azure OpenAI credentials:
 
@@ -12,6 +11,15 @@ Setup:
         AzureOpenAI__ApiKey=<your-azure-openai-api-key>
         AzureOpenAI__DeploymentName=<your-deployment-name>
 
+How to run
+- `make dev` runs both backend and frontend together.
+- Or run them separately in two terminals:
+    - `make backend` (or `cd backend && dotnet run`)
+    - `make frontend` (or `cd frontend && npm run dev`)
+
+Inspect Azure OpenAI:
+- https://azure.microsoft.com/en-us/get-started/azure-portal
+    - Microsoft Foundry
 
 InCharater structure:
 
